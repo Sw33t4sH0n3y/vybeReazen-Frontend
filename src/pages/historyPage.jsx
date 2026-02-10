@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { getSessions, deleteSession } from '../services/sessionService';
 
-const historyPage = () => {
+const HistoryPage = () => {
     const [sessions, setSessions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -63,7 +63,7 @@ const historyPage = () => {
         return groups;
     };
 
-    if (loading) return <main><P>Loading session...</P></main>;
+    if (loading) return <main><p>Loading session...</p></main>;
     if (error) return <main><p>{error}</p></main>;
 
     const groupSessions = groupByDate(sessions);
@@ -114,4 +114,4 @@ const historyPage = () => {
     );
 };
 
-export default historyPage;
+export default HistoryPage;

@@ -1,8 +1,14 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+--void-black: #0a0a0f;
+--deep-space: #0d0d1a;
+--midnight: #121228;
+
+--electric-pink: #ff00ff;
+--hot-magenta: #ff2d95;
+--neon-coral: #ff3366;
+--cyber-orange: #ff6b00;
+
+--gold-pure:
 }
 
 .logo {

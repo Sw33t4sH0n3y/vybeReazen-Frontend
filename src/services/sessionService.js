@@ -56,4 +56,4 @@ const deleteSession = async (sessionId) => {
     return res.json();
 };
 
-export { createSession, updateSession, getSessions};
+export { createSession, updateSession, getSessions, deleteSession};

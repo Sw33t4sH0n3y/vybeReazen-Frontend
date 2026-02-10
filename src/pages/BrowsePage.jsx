@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import { setSoundscapes, getAudioUrl, getSoundscapes } from '../services/soundscapeService';
-import { createStation, updateSession } from '../services/sessionService';
+import { getSoundscapes, getAudioUrl, getSoundscape } from '../services/soundscapeService';
+import { createSession, updateSession } from '../services/sessionService';
 
 const BrowsePage = () => {
     const [soundscapes, setSoundscapes] = useState([]);
@@ -32,7 +32,7 @@ useEffect(() => {
             setLoading(false);
         }
     };
-    fetchSoundscapes();
+    fetchedSoundscapes();
 }, [category]);
 
 // Audio event listners
@@ -203,7 +203,7 @@ return (
                     max='0.9'
                     step='0.01'
                     value={volume}
-                    onChange={hanldVolumeChange}
+                    onChange={handleVolumeChange}
                     />
                     <span>🔈</span>
                 </div>
