@@ -10,6 +10,7 @@ const SignUpForm = () => {
   const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({
     username: '',
+    email: '',
     password: '',
     passwordConf: '',
   });
@@ -51,6 +52,17 @@ const SignUpForm = () => {
             onChange={handleChange}
             required
           />
+        </div>
+        <div>
+          <label htmlFor='email'>Email:</label>
+          <input
+            type='email'
+            id='email'
+            value={formData.email}
+            name='email'
+            onChange={handleChange}
+            required
+            />
         </div>
         <div>
           <label htmlFor='password'>Password:</label>

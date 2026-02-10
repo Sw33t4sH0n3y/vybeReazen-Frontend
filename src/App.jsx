@@ -2,6 +2,10 @@ import { useContext } from 'react';
 import { Routes, Route } from 'react-router';
 
 import NavBar from './components/NavBar/NavBar';
+import BrowsePage from './pages/BrowsePage';
+import HistoryPage from './pages/HistoryPage';
+import ProfilePage from './pages/ProfilePage';
+
 import SignUpForm from './components/SignUpForm/SignUpForm';
 import SignInForm from './components/SignInForm/SignInForm';
 

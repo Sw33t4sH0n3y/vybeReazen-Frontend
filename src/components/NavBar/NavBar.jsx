@@ -23,6 +23,9 @@ return (
           <li>Welcome, {user.username}</li>
           {/* The new link */}
           <li><Link to='/'>Dashboard</Link></li>
+          <li><Link to='/browse'>Browse</Link></li>
+          <li><Link to='/history'>History</Link></li>
+          <li><Link to='/profile'>Profile</Link></li>
           <li><Link to='/' onClick={handleSignOut}>Sign Out</Link></li>
         </ul>
       ) : (
