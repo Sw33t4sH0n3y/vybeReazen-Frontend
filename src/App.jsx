@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import { Routes, Route } from 'react-router';
 
+import './App.css';
+
 import NavBar from './components/NavBar/NavBar';
 import BrowsePage from './pages/BrowsePage';
 import HistoryPage from './pages/HistoryPage';

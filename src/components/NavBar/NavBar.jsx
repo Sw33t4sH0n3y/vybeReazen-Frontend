@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 
 // Import the UserContext object
 import { UserContext } from '../../contexts/UserContext';
+// import logo from '../../assessts/vybeReazen_logo.PNG'
 
 const NavBar = () => {
   // Get the setUser function from the UserContext
@@ -18,24 +19,30 @@ const NavBar = () => {
 
 return (
     <nav>
-      {user ? (
         <ul>
-          <li>Welcome, {user.username}</li>
+          <li>
           {/* The new link */}
-          <li><Link to='/'>Dashboard</Link></li>
+          <Link to='/' className='logo'>
+          {/* <img src={logo} alt='vybeReazen' /> */}
+          <span className='logo-text'>vybeReazen</span>
+          </Link>
+          </li>
+
+          {user ? (
+            <>
           <li><Link to='/browse'>Browse</Link></li>
           <li><Link to='/history'>History</Link></li>
           <li><Link to='/profile'>Profile</Link></li>
           <li><Link to='/' onClick={handleSignOut}>Sign Out</Link></li>
-        </ul>
+        </>
       ) : (
-        <ul>
+        <>
           {/* Another new link */}
-          <li><Link to='/'>Home</Link></li>
           <li><Link to='/sign-in'>Sign In</Link></li>
           <li><Link to='/sign-up'>Sign Up</Link></li>
-        </ul>
+        </>
       )}
+      </ul>
     </nav>
   );
 };

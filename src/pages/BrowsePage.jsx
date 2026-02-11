@@ -38,7 +38,7 @@ useEffect(() => {
 // Audio event listners
 useEffect(() => {
     audio.ontimeupdate = () => setCurrentTime(audio.currentTime);
-    audio.onloadedmetadata = () => setDuration(setDuration.duration);
+    audio.onloadedmetadata = () => setDuration(audio.duration);
     audio.onended = () => handleStop();
 
     return () => {
@@ -73,7 +73,7 @@ const handlePlay = async (soundscape) => {
     // Create session
     try {
         const session = await createSession(soundscape.id, volume);
-        setSessionId(sessionId.id);
+        setSessionId(session.id);
     } catch (err) {
         console.log('Failed to create session:', err);
     }
@@ -93,7 +93,7 @@ const handleStop = async () => {
             await updateSession(sessionId, {
                 ended_at: new Date().toISOString(),
                 duration_actual: Math.floor(currentTime),
-                completed: currentTime >= duration *0.9
+                completed: currentTime >= duration * 0.9
             });
         } catch (err) {
             console.log('Failed to update session:', err);
@@ -106,7 +106,7 @@ const handleStop = async () => {
 };
 // Volume change
 const handleVolumeChange = (e) => {
-    const newVolume = math.min(parseFloat(e.target.value), 0.9);
+    const newVolume = Math.min(parseFloat(e.target.value), 0.9);
     setVolume(newVolume);
     audio.volume = newVolume;
 };
@@ -121,18 +121,19 @@ const handleSeek = (e) => {
 const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs.toString().padStart(2, 0)}`;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
 };
 
-if (loading) return <main><p>Loadingd soundscapes...</p></main>;
+if (loading) return <main><p>Loading soundscapes...</p></main>;
 if (error) return <main><p>{error}</p></main>;
 
 return (
     <main>
         <h1>Browse Soundscapes</h1>
+        <p>Find you healing frequency</p>
 
         {/* Category Filter */}
-        <section>
+        <section className='category-filter'>
             <button onClick={() => setCategory('')} className={category === '' ? 'active' : ''}>
                 All
             </button>
@@ -143,7 +144,7 @@ return (
                 Sound Bath
             </button>
             <button onClick={() => setCategory('massage')} className={category === 'massage' ? 'active' : ''}>
-                All
+                Massage
             </button>
         </section>
 
@@ -151,17 +152,22 @@ return (
         <section>
             {soundscapes.length > 0 ? (
               soundscapes.map((soundscape) => (
-                <div key={soundscape.id} className='soundscape-card'>
-                    <h3>{soundscape.name}</h3>
+                <div key={soundscape.id} className={`soundscape-card ${currentTrack?.id === soundscape.id ? 'playing' : ''}`}>
+                    <h3>🎵 {soundscape.name}</h3>
                     <p>{soundscape.description}</p>
-                    <p>
-                        {soundscape.category} • {soundscape.genre} • {soundscape.frequency_hz}Hz
-                    </p>
-                    <p>{Math.floor(soundscape.duration_seconds / 60)} min</p>
-                    <button onClick={() => handlePlay(soundscape)}>
-                        {currentTrack?.id === soundscape.id && isPlaying ? 'Pause' : 'Play'}
+                    <div className='card-meta'>
+                        <span>{soundscape.category}</span>
+                        <span>{soundscape.genre}</span>
+                        <span className="frequency-badge">{soundscape.frequency_hz}Hz</span>
+                    </div>
+                    <div className="card-footer">
+                        <span>{Math.floor(soundscape.duration_seconds / 60)} min</span>
+                    <button 
+                      className={currentTrack?.id === soundscape.id && isPlaying ? 'gold' : ''} onClick={() => handlePlay(soundscape)}>
+                        {currentTrack?.id === soundscape.id && isPlaying ? '▶︎ Now Playing' : '▶︎ Play'}
                     </button>
                 </div>
+               </div> 
               ))
             ) : (
                 <p>No soundscapes found.</p>  
@@ -169,33 +175,36 @@ return (
         </section>
 
         {/* Audio Player */}
-        {currentTrack && (
-            <section className='audio=player'>
-                <h4>{currentTime.name}</h4>
+            <section className='audio-player'>
+               <div className="audio-player-content">
+                {currentTrack ? (
+                  <>
+                    <div className="track-info">
+                        <h4>🎵 {currentTrack.name}</h4>
+                        <span>{currentTime.name} • {currentTrack.frequency_hz}Hz</span>
+                    </div>
 
-                {/* Progress */}
-                <div>
-                    <span>{formatTime(currentTime)}</span>
-                    <input
-                    type='range'
-                    min='0'
-                    max={duration || 0}
-                    value={currentTime}
-                    onChange={handleSeek}
-                    />
-                    <span>{formatTime(duration)}</span>
+                <div className="controls">
+                    <button onClick={() => handlePlay(currentTrack)}>
+                        {isPlaying ? '⏸' : '▶︎'}
+                    </button>
+                    <button onClick={handleStop}>◼︎</button>
                 </div>
 
-                {/* Controls */}
-                <div>
-                    <button onClick={() => handlePlay(currentTrack)}>
-                        {isPlaying ? 'Pause' : 'Play'}
-                    </button>
-                    <button onClick={handleStop}>Stop</button>
+                <div className="progress-container">
+                    <span>{formatTime(currentTime)}</span>
+                    <input
+                        type='range'
+                        min='0'
+                        max={duration || 0}
+                        value={currentTime}
+                        onChange={handleSeek}
+                      />
+                      <span>{formatTime(duration)}</span>  
                 </div>
 
                 {/* Volume */}
-                <div>
+                <div className="volume-container">
                     <span>🔈</span>
                     <input
                     type='range'
@@ -205,10 +214,17 @@ return (
                     value={volume}
                     onChange={handleVolumeChange}
                     />
-                    <span>🔈</span>
+                    <span>🔊</span>
                 </div>
-            </section>
+                </>
+            ) : (
+                <div className="track-info">
+                    <h4>🎵 Select a soundscape to begin</h4>
+                    <span>Your healing journey awaits</span>
+                </div>
         )}
+        </div>
+      </section>   
     </main>
   );
 };
