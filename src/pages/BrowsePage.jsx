@@ -134,7 +134,7 @@ const handleToggleFavorite = async (soundscapeId) => {
     try{
         if (isFavorited) {
             await removeFavorite(soundscapeId);
-            setFavorites(favorites.filter(id => id !== sounscapeId));
+            setFavorites(favorites.filter(id => id !== soundscapeId));
         } else {
             await addFavorite(soundscapeId);
             setFavorites([...favorites, soundscapeId]);
@@ -181,6 +181,12 @@ return (
               soundscapes.map((soundscape) => (
                 <div key={soundscape.id} className={`soundscape-card ${currentTrack?.id === soundscape.id ? 'playing' : ''}`}>
                     <h3>🎵 {soundscape.name}</h3>
+                    <button
+                        className={`favorite-btn  ${favorites.includes(soundscape.id) ? 'favorited' : ''}`}
+                        onClick={() => handleToggleFavorite(soundscape.id)}
+                        >
+                            {favorites.includes(soundscape.id) ? '❤️' : '🤍'}
+                        </button>
                     <p>{soundscape.description}</p>
                     <div className='card-meta'>
                         <span>{soundscape.category}</span>

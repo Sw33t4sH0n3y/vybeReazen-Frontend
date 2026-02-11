@@ -5,7 +5,7 @@ const getFavorites = async () => {
 
     const res = await fetch(`${BASE_URL}/favorites`, {
         headers: {
-            'Authorization': `Bearer $${token}`
+            'Authorization': `Bearer ${token}`
         }
     });
 
