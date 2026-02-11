@@ -1,4 +1,4 @@
-const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_UR}`;
+const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}`;
 
 const createSession = async (soundscapeId, volume) => {
     const token = localStorage.getItem('token');
@@ -22,7 +22,7 @@ const updateSession = async (sessionId, data) => {
     const token = localStorage.getItem('token');
 
     const res = await fetch(`${BASE_URL}/sessions/${sessionId}`, {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`

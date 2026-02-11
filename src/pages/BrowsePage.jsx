@@ -64,6 +64,9 @@ const handlePlay = async (soundscape) => {
     if (currentTrack) {
         await handleStop();
     }
+    console.log('Audio URL:', getAudioUrl(soundscape.file_name));
+    console.log('File name:', soundscape.file_name);
+    
     // Start new track
     setCurrentTrack(soundscape);
     audio.src = getAudioUrl(soundscape.file_name);

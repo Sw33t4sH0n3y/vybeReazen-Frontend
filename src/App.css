@@ -1,5 +1,5 @@
 /* Colors */
-#root {
+:root {
 --void-black: #0a0a0f;
 --deep-space: #0d0d1a;
 --midnight: #121228;
@@ -11,7 +11,7 @@
 
 --gold-pure: #ffd700;
 --gold-electric: #ffcc00;
--bronze-hot: #ff9500;
+--bronze-hot: #ff9500;
 
 --electric-cyan: #00ffff;
 --neon-teal: #00ffd5;
@@ -21,7 +21,7 @@
 --glow-pink: rgba(255, 0, 255, 0.7);
 --glow-gold: rgba(255, 215, 0, 0.7);
 --glow-cyan: rgba(0, 255, 255, 0.6);
---glow-orange: rgba(255, 107, 0, 0.6;)
+--glow-orange: rgba(255, 107, 0, 0.6);
 
 /* Text */
 --text-bright: #ffffff;
@@ -34,9 +34,8 @@
 --gradient-fire: linear-gradient(135deg, #ff00ff 0%, #ff6b00 50%, #ffd700 100%);
 --gradient-sunset: linear-gradient(135deg, #ff2d95 0%,  #ff6b00 100%);
 --gradient-gold: linear-gradient(135deg, #ffd700 0%, #ff9500 100%);
---gradient-ice: linear-gradient(135deg, #00fffff 0%, #00d4ff 50%, #9d00ff 100%);
---gradient-void: linear-gradient(180deg, #0a0a0f 0%, #121228 50% #1a1a3e 100%);
-
+--gradient-ice: linear-gradient(135deg, #00ffff 0%, #00d4ff 50%, #9d00ff 100%);
+--gradient-void: linear-gradient(180deg, #0a0a0f 0%, #121228 50%, #1a1a3e 100%);
 
 }
 
@@ -80,7 +79,7 @@ body::before {
 
 @keyframes orb-float {
   0%, 100% { transform: scale(1) rotate(0deg); }
-  50% { transform:  scale(1.1) rotate(5 deg);}
+  50% { transform:  scale(1.1) rotate(5deg);}
 }
 
 /* Particles */
@@ -101,21 +100,21 @@ body::before {
   height: 4px;
   background: var(--gold-pure);
   border-radius: 50%;
-  box-shadow: 0 0 10px var(--gold-gold);
+  box-shadow: 0 0 10px var(--glow-gold);
   animation: float-up 8s linear infinite;
   opacity: 0;
 }
 
 .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
-.particle:nth-child(2) { left: 10%; animation-delay: 1s; }
-.particle:nth-child(3) { left: 10%; animation-delay: 2s; }
-.particle:nth-child(4) { left: 10%; animation-delay: 3s; }
-.particle:nth-child(5) { left: 10%; animation-delay: 5s; }
-.particle:nth-child(6) { left: 10%; animation-delay: 6s; }
-.particle:nth-child(7) { left: 10%; animation-delay: 7s; }
-.particle:nth-child(8) { left: 10%; animation-delay: 8s; }
-.particle:nth-child(9) { left: 10%; animation-delay: 0.5s; }
-.particle:nth-child(10) { left: 10%; animation-delay: 2.5s; }
+.particle:nth-child(2) { left: 20%; animation-delay: 1s; }
+.particle:nth-child(3) { left: 30%; animation-delay: 2s; }
+.particle:nth-child(4) { left: 40%; animation-delay: 3s; }
+.particle:nth-child(5) { left: 50%; animation-delay: 5s; }
+.particle:nth-child(6) { left: 60%; animation-delay: 6s; }
+.particle:nth-child(7) { left: 70%; animation-delay: 7s; }
+.particle:nth-child(8) { left: 80%; animation-delay: 8s; }
+.particle:nth-child(9) { left: 90%; animation-delay: 0.5s; }
+.particle:nth-child(10) { left: 15%; animation-delay: 2.5s; }
 
 @keyframes float-up {
   0% { transform: translateY(100vh); opacity: 0; }
@@ -124,8 +123,9 @@ body::before {
   100% { transform: translateY(100vh); opacity: 0; }
 }
 
+/* Typeography */
 h1 {
-font-family: 'Obitron', sans-serif;
+font-family: 'Orbitron', sans-serif;
   font-size: 3rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -144,7 +144,7 @@ font-family: 'Obitron', sans-serif;
 }
 
 h2 {
-  font-family: 'Obitron', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 1.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -154,10 +154,10 @@ h2 {
 }
 
 h3 {
-  font-family: 'Obitron', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--text-dim);
+  color: var(--text-bright);
   margin-bottom: 0.5rem;
 }
 
@@ -165,7 +165,7 @@ p {
   font-family: 'Rajdhani', sans-serif;
   font-size: 1.1rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-dim);
   margin-bottom: 0.5rem;
 }
 
@@ -217,7 +217,7 @@ nav li:first-child {
 }
 
 nav a {
-  font-family: 'Obitron', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -225,6 +225,7 @@ nav a {
   color: var(--text-dim); 
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;
+  position: relative;
 }
 
 nav a::after {
@@ -243,6 +244,11 @@ nav a:hover {
   text-shadow: 0 0 20px var_(--glow-cyan);
 }
 
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Logo */
 .logo {
   display: flex;
   align-items: center;
@@ -262,13 +268,12 @@ nav a:hover {
 }
 
 .logo-text {
-  font-family: 'Obitron', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 1.5rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 3px;
   background: var(--gradient-gold);  
-  text-shadow: 0 0 20px var(--glow-gold);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -276,7 +281,7 @@ nav a:hover {
 
 /* Buttons */
 button {
-  font-family: 'Obitron', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   text-transform: uppercase;
@@ -322,7 +327,7 @@ button.primary-btn {
 }
 
 button.gold:hover,
-button.primary-btn {
+button.primary-btn:hover {
   box-shadow: 
     0 10 40px var(--glow-gold),
     0 0 80px var(--glow-orange);
@@ -343,9 +348,9 @@ button.secondary-btn:hover {
 }
 
 button.active {
-  background: var(--gradient-fire);
+  background: var(--gradient-gold);
   color: #000000;
-  box-shadow:  0 0 30px var(--glow-pink);
+  box-shadow:  0 0 30px var(--glow-gold);
 }
 
 /* Category Filter */
@@ -370,7 +375,7 @@ button.active {
   box-shadow: 0 0 20px var(--glow-cyan);
 }
 
-.category-filterbutton.active {
+.category-filter button.active {
   background: var(--gradient-gold);
   color: #000000;
   border-color: transaparent;
@@ -434,7 +439,7 @@ button.active {
 
 @keyframes glow-pulse {
   0%, 100% { opacity: 1; } 
-  50% {apoacity: 0.5; }
+  50% { opacity: 0.5; }
 }
 
 /* Meta Card */
@@ -478,12 +483,13 @@ position: fixed;
   background: rgba(10, 10, 15, 0.98 );
   backdrop-filter: blur(30px);
   border-top: 3px solid;
-  border-image: var(--gradient-gold);
+  border-image: var(--gradient-gold) 1;
   padding: 1.25rem 2 rem;
   z-index: 100;
   box-shadow: 
     0 -10px 60px var(--glow-gold),
-    0 -5px 30px var(--glow-orange);}
+    0 -5px 30px var(--glow-orange);
+  }
 
 .audio-player-content {
   max-width:1200px;
@@ -494,7 +500,7 @@ position: fixed;
 }
 
 .audio-player h4 {
-  font-family: 'Obitron', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   text-transform: uppercase;
@@ -555,7 +561,7 @@ position: fixed;
 }
 
 .progress-container span {
-  font-family: 'Obitron', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 0.8rem;
   color: var(--text-dim);
   min-width: 50px;
@@ -585,7 +591,7 @@ position: fixed;
   color: var(--text-bright);
 }
 
-.volume-bar {
+/* .volume-bar {
   flex: 1;
   height: 6px;
   background: rgba(255, 255, 255, 0.1);
@@ -598,7 +604,7 @@ position: fixed;
   background: var(--electric-cyan);
   border-radius: 3px;
 }
-
+ */
 /* range inputs */
 input[type='range'] {
   -webkit-appearance: none;
@@ -607,6 +613,7 @@ input[type='range'] {
   height: 8px;
   border-radius: 4px;
   cursor: pointer;
+  flex: 1;
 }
 
 input[type='range']::-webkiy-slider-thumb {
@@ -614,7 +621,7 @@ input[type='range']::-webkiy-slider-thumb {
   appearance: none;
   width: 16px;
   height: 16px;
-  background: var(--gradient-gold);
+  background: var(--gold-pure);
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 0 15px var(--glow-gold);
@@ -640,7 +647,7 @@ form div {
 }
 
 label {
-  font-family: 'Obitron', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-weight: 500;
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -717,7 +724,7 @@ input::placeholder {
 }
 
 .tagline {
-  font-family: 'Obitron', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 8px;
@@ -801,7 +808,7 @@ font-family: 'Rajdhani', sans-serif;
 }
 
 .feature h3 { 
-  font-family: 'Obitron', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 0.9 rem;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -884,7 +891,7 @@ profile-card {
 .loading {
   text-align: center;
   padding: 4rem;
-  font-family: 'Obitron', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   color: var(--electric-cyan);
   text-shadow: 0 0 20px var(--glow-cyan);
   animation: pulse-glow 1.5s ease-in-out infinite;
@@ -918,6 +925,7 @@ profile-card {
   }
 
   .cta-buttons {
+    flex-direction: column;
     width: 100%;
   }
 
