@@ -68,7 +68,7 @@ const ProfilePage = ()=> {
         <main>
             <h1>Profile</h1>
 
-            <section className='profile-card'>
+            <section className='.profile-card'>
                 <div className='profile-avatar'>👤</div>
 
                 {isEditing ? (

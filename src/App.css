@@ -71,7 +71,7 @@ body::before {
   background:
     radial-gradient(ellipse at 20% 80%, rgba(255, 0, 25, 0.15) 0%, transparent 50%),
     radial-gradient(ellipse at 80% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(255, 107, 0, 0.8) 0%, transparent 60%);
+    radial-gradient(ellipse at 50% 50%, rgba(255, 107, 0, 0.08) 0%, transparent 60%);
   pointer-events: none;
   z-index: -1;
   animation: orb-float 10s ease-in-out infinite;  
@@ -117,7 +117,7 @@ body::before {
 .particle:nth-child(10) { left: 15%; animation-delay: 2.5s; }
 
 @keyframes float-up {
-  0% { transform: translateY(100vh); opacity: 0; }
+  0% { transform: translateY(-100vh); opacity: 0; }
   10% { opacity: 1; }
   90% { opacity: 1; }
   100% { transform: translateY(100vh); opacity: 0; }
@@ -237,11 +237,11 @@ nav a::after {
   height: 2px;
   background: var(--gradient-fire);
   transition: all 0.3s ease;
-  transform: translateX(-50);
+  transform: translateX(-50%);
 }
 nav a:hover {
   color: var(--text-bright);  
-  text-shadow: 0 0 20px var_(--glow-cyan);
+  text-shadow: 0 0 20px var(--glow-cyan);
 }
 
 nav a:hover::after {
@@ -329,7 +329,7 @@ button.primary-btn {
 button.gold:hover,
 button.primary-btn:hover {
   box-shadow: 
-    0 10 40px var(--glow-gold),
+    0 10px 40px var(--glow-gold),
     0 0 80px var(--glow-orange);
 }
 
@@ -378,7 +378,7 @@ button.active {
 .category-filter button.active {
   background: var(--gradient-gold);
   color: #000000;
-  border-color: transaparent;
+  border-color: transparent;
   box-shadow: 0 0 30px var(--glow-gold);
 }
 
@@ -397,7 +397,7 @@ button.active {
   overflow: hidden;
 }
 
-.soundscape-card::before
+.soundscape-card::before,
 .session-card::before {
   content: '';
   position: absolute;
@@ -484,7 +484,7 @@ position: fixed;
   backdrop-filter: blur(30px);
   border-top: 3px solid;
   border-image: var(--gradient-gold) 1;
-  padding: 1.25rem 2 rem;
+  padding: 1.25rem 2rem;
   z-index: 100;
   box-shadow: 
     0 -10px 60px var(--glow-gold),
@@ -616,7 +616,7 @@ input[type='range'] {
   flex: 1;
 }
 
-input[type='range']::-webkiy-slider-thumb {
+input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 16px;
@@ -665,7 +665,7 @@ input[type='password'] {
   padding: 1rem;
   border-radius: 8px;
   color: var(--text-bright);
-  transition: all 0.3 ease;
+  transition: all 0.3s ease;
 }
 
 input[type='text']:focus,
@@ -809,7 +809,7 @@ font-family: 'Rajdhani', sans-serif;
 
 .feature h3 { 
   font-family: 'Orbitron', sans-serif;
-  font-size: 0.9 rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--gold-pure);
@@ -822,7 +822,7 @@ font-family: 'Rajdhani', sans-serif;
 }
 
 /* Profile */
-profile-card {
+.profile-card {
   max-width: 450px;
   margin: 2rem auto;
   text-align: center;
@@ -868,7 +868,7 @@ profile-card {
 
 /* Messages */
 .error {
-  font-family: 'Rajdhani' sans-serif;
+  font-family: 'Rajdhani', sans-serif;
   color: var(--neon-coral);
   background: rgba(255, 51, 102, 0.1);
   padding: 1rem 1.25rem;
@@ -902,7 +902,7 @@ profile-card {
   h1 { font-size: 2rem; }
   .landing h1 { font-size: 2.5rem; }
   .aura { width: 250px; }
-  .tagline { font-size: 0.9 rem; letter-spacing: 4px; }
+  .tagline { font-size: 0.9rem; letter-spacing: 4px; }
   .description {font-size: 1.1rem; }
 
   nav ul {
@@ -910,7 +910,7 @@ profile-card {
     gap: 1rem;
   }
 
-  nav-li:first-child {
+  nav li:first-child {
     width: 100%;
   }
 
