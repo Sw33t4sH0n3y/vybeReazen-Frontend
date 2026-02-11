@@ -2,12 +2,14 @@ import { useEffect, useState, useRef } from "react";
 
 import { getSoundscapes, getAudioUrl, getSoundscape } from '../services/soundscapeService';
 import { createSession, updateSession } from '../services/sessionService';
+import { getFavorites, addFavorite, removeFavorite } from "../services/favoriteService";
 
 const BrowsePage = () => {
     const [soundscapes, setSoundscapes] = useState([]);
     const [category, setCategory] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [favorites, setFavorites] = useState([]);
 
 // Audio Player State
 const [currentTrack, setCurrentTrack] = useState(null); 
@@ -20,11 +22,13 @@ const [sessionId, setSessionId] = useState(null);
 const audioRef = useRef(new Audio())
 // Fetch Soundscapes
 useEffect(() => {
-    const fetchedSoundscapes = async () => {
+    const fetchData = async () => {
         try {
             setLoading(true);
-            const data = await getSoundscapes(category || null);
-            setSoundscapes(data);
+            const soundscapeData = await getSoundscapes(category || null);
+            const favoriteData = await getFavorites()
+            setSoundscapes(soundscapeData);
+            setFavorites(favoriteData.map(f => f.id))
         } catch (err) {
             setError('Failed to load soundscapes');
             console.log(err);
@@ -32,7 +36,7 @@ useEffect(() => {
             setLoading(false);
         }
     };
-    fetchedSoundscapes();
+    fetchData();
 }, [category]);
 
 // Audio event listners
@@ -49,7 +53,7 @@ useEffect(() => {
     };
 }, []);
 
-// Play soundscape
+// Handlers - Play soundscape
 const handlePlay = async (soundscape) => {
     const audio = audioRef.current;
     // if same track, toggle play/pause
@@ -123,6 +127,21 @@ const handleSeek = (e) => {
     const time = parseFloat(e.target.value);
     audioRef.current.currentTime = time;
     setCurrentTime(time);
+};
+const handleToggleFavorite = async (soundscapeId) => {
+    const isFavorited = favorites.includes(soundscapeId);
+
+    try{
+        if (isFavorited) {
+            await removeFavorite(soundscapeId);
+            setFavorites(favorites.filter(id => id !== sounscapeId));
+        } else {
+            await addFavorite(soundscapeId);
+            setFavorites([...favorites, soundscapeId]);
+        }    
+    } catch (err) {
+        console.log('Failed to update favorite:', err);
+    }
 };
 
 // Format Time
