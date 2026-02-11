@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { getSoundscapes, getAudioUrl, getSoundscape } from '../services/soundscapeService';
 import { createSession, updateSession } from '../services/sessionService';
@@ -12,12 +12,12 @@ const BrowsePage = () => {
 // Audio Player State
 const [currentTrack, setCurrentTrack] = useState(null); 
 const [isPlaying, setIsPlaying] = useState(false); 
-const [audio] = useState(new Audio()); 
 const [currentTime, setCurrentTime] = useState(0); 
 const [volume, setVolume] = useState(0.75); 
 const [duration, setDuration] = useState(0); 
 const [sessionId, setSessionId] = useState(null); 
 
+const audioRef = useRef(new Audio())
 // Fetch Soundscapes
 useEffect(() => {
     const fetchedSoundscapes = async () => {
@@ -37,6 +37,8 @@ useEffect(() => {
 
 // Audio event listners
 useEffect(() => {
+    const audio = audioRef.current;
+
     audio.ontimeupdate = () => setCurrentTime(audio.currentTime);
     audio.onloadedmetadata = () => setDuration(audio.duration);
     audio.onended = () => handleStop();
@@ -45,10 +47,11 @@ useEffect(() => {
         audio.pause();
         audio.src = '';
     };
-}, [audio]);
+}, []);
 
 // Play soundscape
 const handlePlay = async (soundscape) => {
+    const audio = audioRef.current;
     // if same track, toggle play/pause
     if (currentTrack?.id === soundscape.id) {
         if (isPlaying) {
@@ -66,7 +69,7 @@ const handlePlay = async (soundscape) => {
     }
     console.log('Audio URL:', getAudioUrl(soundscape.file_name));
     console.log('File name:', soundscape.file_name);
-    
+
     // Start new track
     setCurrentTrack(soundscape);
     audio.src = getAudioUrl(soundscape.file_name);
@@ -86,6 +89,8 @@ const handlePlay = async (soundscape) => {
 
 // stop playback
 const handleStop = async () => {
+    const audio = audioRef.current;
+
     audio.pause();
     audio.currentTime = 0;
     setIsPlaying(false);
@@ -111,12 +116,12 @@ const handleStop = async () => {
 const handleVolumeChange = (e) => {
     const newVolume = Math.min(parseFloat(e.target.value), 0.9);
     setVolume(newVolume);
-    audio.volume = newVolume;
+    audioRef.current.volume = newVolume;
 };
 //  Seek
 const handleSeek = (e) => {
     const time = parseFloat(e.target.value);
-    audio.currentTime = time;
+    audioRef.current.currentTime = time;
     setCurrentTime(time);
 };
 
@@ -184,7 +189,7 @@ return (
                   <>
                     <div className="track-info">
                         <h4>🎵 {currentTrack.name}</h4>
-                        <span>{currentTime.name} • {currentTrack.frequency_hz}Hz</span>
+                        <span>{currentTrack.genre} • {currentTrack.frequency_hz}Hz</span>
                     </div>
 
                 <div className="controls">
