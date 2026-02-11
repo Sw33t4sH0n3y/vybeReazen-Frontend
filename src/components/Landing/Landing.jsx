@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import logo from'../../assets/vybeReazen_logo transparent.png';
+import logo from '../../assets/vybeReazen_logo.png';
 
 const Landing = () => {
   return (

@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router' // add import for BrowserRouter
 import { UserProvider } from './contexts/UserContext.jsx';
 
-import './index.css'
 import App from './App.jsx'
 
 // Wrap the App component with the BrowserRouter component to enable
