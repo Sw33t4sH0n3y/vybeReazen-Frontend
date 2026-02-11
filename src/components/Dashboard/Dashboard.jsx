@@ -49,18 +49,18 @@ const Dashboard = () => {
       <Link to='/browse'>View All →</Link>  
     </section>
 
-    {/* {/* Recent Sessions */}
+    {/* Recent Sessions */}
     <section>
-      <h2>Recent Seeions</h2>
+      <h2>Recent Sessions</h2>
       {sessions.length > 0 ? (
         sessions.slice(0, 5).map((session) => (
           <div key={session.id}>
             <p>{session.soundscape_name}</p>
-            <p>{newDate(session_started_at).toLocaleDateString()}</p>
+            <p>{new Date(session.started_at).toLocaleDateString()}</p>
           </div>
         ))
       ) : (
-        <p>No sessions yet. <Link to='/browse'>Start you firt one!</Link></p>
+        <p>No sessions yet. <Link to='/browse'>Start you first one!</Link></p>
       )}
       <Link to='/history'>View All →</Link>
     </section>
