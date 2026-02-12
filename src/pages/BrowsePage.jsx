@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import { getSoundscapes, getAudioUrl, getSoundscape } from '../services/soundscapeService';
 import { createSession, updateSession } from '../services/sessionService';
 import { getFavorites, addFavorite, removeFavorite } from "../services/favoriteService";
+import { getFrequency } from '../services/frequencyService';
 
 const BrowsePage = () => {
     const [soundscapes, setSoundscapes] = useState([]);
@@ -10,6 +11,8 @@ const BrowsePage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [favorites, setFavorites] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedFrequency, setSelectedFrequency]= useState(null);
 
 // Audio Player State
 const [currentTrack, setCurrentTrack] = useState(null); 
@@ -71,8 +74,6 @@ const handlePlay = async (soundscape) => {
     if (currentTrack) {
         await handleStop();
     }
-    console.log('Audio URL:', getAudioUrl(soundscape.file_name));
-    console.log('File name:', soundscape.file_name);
 
     // Start new track
     setCurrentTrack(soundscape);
@@ -144,6 +145,20 @@ const handleToggleFavorite = async (soundscapeId) => {
     }
 };
 
+const handleFrequencyClick = async (hz) => {
+    try {
+        const frequencyData = await getFrequency(hz);
+        setSelectedFrequency(frequencyData);
+        setShowModal(true);
+    } catch (err){
+        console.log('Failed to load fruency:', err);
+    }
+};
+const closeModal = () => {
+    setShowModal(false);
+    setSelectedFrequency(null);
+};
+
 // Format Time
 const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
@@ -191,7 +206,12 @@ return (
                     <div className='card-meta'>
                         <span>{soundscape.category}</span>
                         <span>{soundscape.genre}</span>
-                        <span className="frequency-badge">{soundscape.frequency_hz}Hz</span>
+                        <span className="frequency-badge"
+                            onClick={() => handleFrequencyClick(soundscape.frequency_hz)}
+                            style={{ cursor: 'pointer' }}
+                        >
+                            {soundscape.frequency_hz}Hz        
+                            </span>
                     </div>
                     <div className="card-footer">
                         <span>{Math.floor(soundscape.duration_seconds / 60)} min</span>
@@ -257,7 +277,35 @@ return (
                 </div>
         )}
         </div>
-      </section>   
+      </section>
+         {/* Frequency Modal */}
+         { showModal && selectedFrequency && (
+            <div className='modal-overlay' onClick={closeModal}>
+                <div className='modal' onClick={(e) => e.stopPropagation()}>
+                    <button className='modal-close' onClick={closeModal}>✖️</button>
+
+                    <h2 style={{ color: selectedFrequency.color }}>
+                        {selectedFrequency.hz}Hz
+                    </h2>
+                    <h3>{selectedFrequency.name}</h3>
+
+                    <p>{selectedFrequency.description}</p>
+
+                    <div className='frequency-details'>
+                        <div className="detail">
+                            <span className="detail-label">Benefits</span>
+                            <span>{selectedFrequency.benefits}</span>
+                        </div>
+                        <div className="detail">
+                            <span className="detail-label">Chakra</span>
+                            <span style={{ color: selectedFrequency.color}}>
+                              {selectedFrequency.chakra}  
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         )}
     </main>
   );
 };
