@@ -5,7 +5,7 @@ import './App.css';
 
 import NavBar from './components/NavBar/NavBar';
 import BrowsePage from './pages/BrowsePage';
-import HistoryPage from './pages/HistoryPage';
+import HistoryPage from './pages/Test';
 import ProfilePage from './pages/ProfilePage';
 
 import SignUpForm from './components/SignUpForm/SignUpForm';

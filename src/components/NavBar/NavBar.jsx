@@ -24,7 +24,9 @@ return (
           {/* The new link */}
           <Link to='/' className='logo'>
           {/* <img src={logo} alt='vybeReazen' /> */}
-          <span className='logo-text'>vybeReazen</span>
+          <span className='logo-text'>
+            <span className='logo-vybe'>vybe</span>Reazen
+            </span>
           </Link>
           </li>
 
