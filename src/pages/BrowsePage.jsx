@@ -13,6 +13,15 @@ const BrowsePage = () => {
     const [favorites, setFavorites] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedFrequency, setSelectedFrequency]= useState(null);
+    const [timerMode, setTimerMode] = useState(false);
+    const [timerDuration, setTimerDuration] = useState(null);
+    const [timeRemaining, setTimeRemaining] = useState(null);
+    
+    const canvasRef = useRef(null);
+    const audioContextRef = useRef(null)
+    const analyserRef = useRef(null);
+    const animationRef = useRef(null);
+    const sourceRef = useRef(null);
 
 // Audio Player State
 const [currentTrack, setCurrentTrack] = useState(null); 
@@ -46,6 +55,8 @@ useEffect(() => {
 useEffect(() => {
     const audio = audioRef.current;
 
+    audio.crossOrigin = "anonymous";
+
     audio.ontimeupdate = () => setCurrentTime(audio.currentTime);
     audio.onloadedmetadata = () => setDuration(audio.duration);
     audio.onended = () => handleStop();
@@ -55,6 +66,28 @@ useEffect(() => {
         audio.src = '';
     };
 }, []);
+
+useEffect(() => {
+    if (!timerMode || !timerDuration || !isPlaying) return;
+
+    const remaining = timerDuration - currentTime;
+    setTimeRemaining(remaining);
+
+    if (remaining <= 0) {
+        // Play chime
+        const chime = new Audio('/chime-cords.mp3');
+        chime.volume = 0.5;
+        chime.play();
+
+        // Stop playback after chime
+        setTimeout(() => {
+            handleStop();
+            setTimerMode(false);
+            setTimerDuration(null)
+            setTimeRemaining(null);
+        }, 2000);
+    }
+}, [currentTime, timerMode, timerDuration, isPlaying]);
 
 // Handlers - Play soundscape
 const handlePlay = async (soundscape) => {
@@ -91,13 +124,12 @@ const handlePlay = async (soundscape) => {
     audio.play();
     setIsPlaying(true);
 
-
 // Add Media Session (lock screen controls)
 if ('mediaSession' in navigator) {
     navigator.mediaSession.metadata = new MediaMetadata({
-        title: soundscapes.name,
-        artist: `${soundscapes.frequency_hz}Hz • vybeReazen`,
-        album: soundscapes.category,
+        title: soundscape.name,
+        artist: `${soundscape.frequency_hz}Hz • vybeReazen`,
+        album: soundscape.category,
     });
 
     navigator.mediaSession.setActionHandler('play', () => {
@@ -107,14 +139,21 @@ if ('mediaSession' in navigator) {
 
     navigator.mediaSession.setActionHandler('pause', () => {
         audio.play();
-        setIsPlaying(true);
+        setIsPlaying(false);
     });
 
     navigator.mediaSession.setActionHandler('stop', () => {
         handleStop()
     });    
  }  
+
+    if (audioContextRef.current?.state === 'suspended') {
+        audioContextRef.current.resume();
+    }
+    startVisualizer();
+
 };
+
 // stop playback
 const handleStop = async () => {
     const audio = audioRef.current;
@@ -122,6 +161,9 @@ const handleStop = async () => {
     audio.pause();
     audio.currentTime = 0;
     setIsPlaying(false);
+
+    // Stop Visualizer
+    stopVisualizer();
 
     // Update Session
     if (sessionId) {
@@ -140,6 +182,7 @@ const handleStop = async () => {
     setCurrentTrack(null);
     setCurrentTime(0);
 };
+
 // Volume change
 const handleVolumeChange = (e) => {
     const newVolume = Math.min(parseFloat(e.target.value), 0.9);
@@ -152,6 +195,83 @@ const handleSeek = (e) => {
     audioRef.current.currentTime = time;
     setCurrentTime(time);
 };
+const handleSetTimer = (minutes) => {
+    if (minutes === null) {
+        setTimerMode(false);
+        setTimerDuration(null);
+        setTimeRemaining(null);
+    } else {
+        setTimerMode(true);
+        setTimerDuration(minutes * 60);
+        setTimeRemaining(minutes * 60);
+
+    }
+};
+
+// Visualizer Functions
+const startVisualizer = () => {
+    const audio = audioRef.current;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+
+    // Create audio context only once
+    if (!audioContextRef.current) {
+        audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
+        analyserRef.current = audioContextRef.current.createAnalyser();
+        analyserRef.current.fftSize = 256;
+
+        sourceRef.current = audioContextRef.current.createMediaElementSource(audio);
+        sourceRef.current.connect(analyserRef.current);
+        analyserRef.current.connect(audioContextRef.current.destination);
+    }
+
+    const analyser = analyserRef.current;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    const draw = () => {
+        const WIDTH = canvas.width;
+        const HEIGHT = canvas.height;
+
+        animationRef.current = requestAnimationFrame(draw);
+
+        analyser.getByteFrequencyData(dataArray);
+
+        // Clear canvas
+        ctx.fillStyle = 'rgba(10, 10, 15, 0.2)';
+        ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+        const barWidth = (WIDTH / bufferLength) * 2.5;
+        let barHeight;
+        let x = 0;
+
+        for (let i = 0; i < bufferLength; i++) {
+            barHeight = dataArray[i] / 2
+
+            // Gradient colors matching theme
+            const gradient =ctx.createLinearGradient(0, HEIGHT, 0, HEIGHT - barHeight);
+            gradient.addColorStop(0, '#ff00ff');
+            gradient.addColorStop(0.5, '#ff6b00');
+            gradient.addColorStop(1, '#ffd700');
+
+            ctx.fillStyle = gradient;
+            ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+
+            x += barWidth + 1;
+        }
+    };
+
+    draw();
+};
+
+const stopVisualizer = () => {
+    if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+    }
+};
+
 const handleToggleFavorite = async (soundscapeId) => {
     const isFavorited = favorites.includes(soundscapeId);
 
@@ -177,6 +297,7 @@ const handleFrequencyClick = async (hz) => {
         console.log('Failed to load fruency:', err);
     }
 };
+
 const closeModal = () => {
     setShowModal(false);
     setSelectedFrequency(null);
@@ -252,6 +373,7 @@ return (
 
         {/* Audio Player */}
             <section className='audio-player'>
+                <canvas ref={canvasRef} className="visualizer" width="800" height="100"></canvas>
                <div className="audio-player-content">
                 {currentTrack ? (
                   <>
@@ -292,8 +414,26 @@ return (
                     />
                     <span>🔊</span>
                 </div>
-                </>
-            ) : (
+
+                {/* Timer */}
+                <div className="timer-container">
+                    {timerMode && timeRemaining > 0 ? (
+                        <div className="timer-display">
+                            <span className="timer-remaining">{formatTime(timeRemaining)}</span>
+                            <button className="timer-cancel" onClick={() => handleSetTimer(null)}>✖️</button>
+                        </div>    
+                    ) : (
+                <div className="timer-presets">
+                      <span>⏱️</span>
+                      <button onClick={() => handleSetTimer(10)}>10m</button>
+                      <button onClick={() => handleSetTimer(20)}>20m</button>
+                      <button onClick={() => handleSetTimer(30)}>30m</button>
+                      <button onClick={() => handleSetTimer(60)}>60m</button>
+                      </div>
+                    )}   
+                </div> 
+            </>
+        ) : (
                 <div className="track-info">
                     <h4>🎵 Select a soundscape to begin</h4>
                     <span>Your healing journey awaits</span>
@@ -301,6 +441,7 @@ return (
         )}
         </div>
       </section>
+
          {/* Frequency Modal */}
          { showModal && selectedFrequency && (
             <div className='modal-overlay' onClick={closeModal}>
