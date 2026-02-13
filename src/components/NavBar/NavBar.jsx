@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 
 // Import the UserContext object
 import { UserContext } from '../../contexts/UserContext';
-// import logo from '../../assessts/vybeReazen_logo.PNG'
 import { ThemeContext } from '../../contexts/ThemeContext';
 const NavBar = () => {
   // Get the setUser function from the UserContext

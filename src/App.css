@@ -23,47 +23,6 @@
 --glow-cyan: rgba(0, 255, 255, 0.6);
 --glow-orange: rgba(255, 107, 0, 0.6);
 
-/* Light Mode */
-[data-theme="light"] {
-  --void-black: #f5f5f7;
-  --deep-space: #e8e8ed;
-  --midnight: #d1d1d6;
-
-  --text-bright: #1a1a1a;
-  --text-dim: rgba(0, 0, 0, 0.6);
-
-  --border_glow: rgba(0, 0, 0, 0.15);
-}
-
-[data-theme="light"] body {
-  background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 50%, #d1d1d6 100%);
-}
-
-[data-theme="light"] nav {
-  background: rgba(255, 255, 255, 0.95);
-}
-
-[data-theme="light"] .soundscape-card,
-[data-theme="light"] .session-card,
-[data-theme="light"] .profile-card{
-  background: rgba(0, 0, 0, 0.1);
-  box-shadow: 
-    0 4px 6px rgba(0, 0, 0, 0.1),
-    0 10px 20px rgba(0, 0, 0, 0.1),
-    0 25px 50px rgba(0, 0, 0, 0.15);
-}
-
-[data-theme="light"].audio-player {
-  background: rgba(255, 255, 255, 0.95);
-}
-
-[data-theme="light"] input[type='text'],
-[data-theme="light"] input[type='email'],
-[data-theme="light"] input[type='password'] {
-  background: rgba(0, 0, 0, 0.05);
-  color:#1a1a1a;
-}
-
 /* Text */
 --text-bright: #ffffff;
 --text-dim: rgba(255, 255, 255, 0.6);
@@ -78,6 +37,58 @@
 --gradient-ice: linear-gradient(135deg, #00ffff 0%, #00d4ff 50%, #9d00ff 100%);
 --gradient-void: linear-gradient(180deg, #0a0a0f 0%, #121228 50%, #1a1a3e 100%);
 
+}
+/* Light Mode */
+html[data-theme="light"] {
+  --void-black: #f5f5f7;
+  --deep-space: #e8e8ed;
+  --midnight: #d1d1d6;
+
+  --text-bright: #1a1a1a;
+  --text-dim: rgba(0, 0, 0, 0.6);
+
+  --border-glow: rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme="light"] body {
+  background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ed 50%, #d1d1d6 100%) !important;
+}
+
+
+html[data-theme="light"] #root{
+  background: transparent !important;
+}
+
+html[data-theme="light"] body::before {
+  background: 
+  radial-gradient(ellipse at 20% 80%, rgba(255, 0, 255, 0.8) 0%, transparent 50%),
+  radial-gradient(ellipse at 80% 20%, rgba(0, 200, 200, 0.8) 0%, transparent 50%),
+  radial-gradient(ellipse at 50% 50%, rgba(255, 150, 0, 0.05) 0%, transparent 60%);
+}
+
+html[data-theme="light"] nav {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+html[data-theme="light"] .soundscape-card,
+html[data-theme="light"] .session-card,
+html[data-theme="light"] .profile-card{
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.1),
+    0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme="light"] .audio-player {
+   background: rgba(255, 255, 255, 0.95);
+}
+
+html[data-theme="light"] input[type='text'],
+html[data-theme="light"] input[type='email'],
+html[data-theme="light"] input[type='password'] {
+  background: rgba(0, 0, 0, 0.05);
+  color:#1a1a1a;
 }
 
 /* Reset */
