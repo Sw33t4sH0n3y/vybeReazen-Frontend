@@ -75,7 +75,7 @@ useEffect(() => {
 
     if (remaining <= 0) {
         // Play chime
-        const chime = new Audio('/chime-cords.mp3');
+        const chime = new Audio('/chime-chords.mp3');
         chime.volume = 0.5;
         chime.play();
 
