@@ -16,6 +16,7 @@ const BrowsePage = () => {
     const [timerMode, setTimerMode] = useState(false);
     const [timerDuration, setTimerDuration] = useState(null);
     const [timeRemaining, setTimeRemaining] = useState(null);
+    const [timerStart, setTimerStart] = useState(null);
     
     const canvasRef = useRef(null);
     const audioContextRef = useRef(null)
@@ -68,9 +69,11 @@ useEffect(() => {
 }, []);
 
 useEffect(() => {
-    if (!timerMode || !timerDuration || !isPlaying) return;
+    if (!timerMode || !timerDuration || !isPlaying || !timerStart) return;
 
-    const remaining = timerDuration - currentTime;
+    const interval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - timerStart) / 1000);    
+    const remaining = timerDuration - elapsed;
     setTimeRemaining(remaining);
 
     if (remaining <= 0) {
@@ -86,9 +89,13 @@ useEffect(() => {
             setTimerMode(false);
             setTimerDuration(null)
             setTimeRemaining(null);
+            setTimerStart(null)
         }, 2000);
     }
-}, [currentTime, timerMode, timerDuration, isPlaying]);
+}, 1000);
+
+    return () => clearInterval(interval);
+}, [timerMode, timerDuration, isPlaying, timerStart]);
 
 // Handlers - Play soundscape
 const handlePlay = async (soundscape) => {
@@ -201,10 +208,12 @@ const handleSetTimer = (minutes) => {
         setTimerMode(false);
         setTimerDuration(null);
         setTimeRemaining(null);
+        setTimerStart(null);
     } else {
         setTimerMode(true);
         setTimerDuration(minutes * 60);
         setTimeRemaining(minutes * 60);
+        setTimerStart(Date.now());
 
     }
 };
