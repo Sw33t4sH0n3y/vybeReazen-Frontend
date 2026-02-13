@@ -4,10 +4,11 @@ import { Link } from 'react-router';
 // Import the UserContext object
 import { UserContext } from '../../contexts/UserContext';
 // import logo from '../../assessts/vybeReazen_logo.PNG'
-
+import { ThemeContext } from '../../contexts/ThemeContext';
 const NavBar = () => {
   // Get the setUser function from the UserContext
   const { user, setUser } = useContext(UserContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   // Add the handleSignOut function
   const handleSignOut = () => {
@@ -35,10 +36,20 @@ return (
           <li><Link to='/browse'>Browse</Link></li>
           <li><Link to='/history'>History</Link></li>
           <li><Link to='/profile'>Profile</Link></li>
+          <li>
+            <button className='theme-toggle' onClick={toggleTheme}>
+              {theme === 'dark' ? '☀️' : '🌙'}
+            </button>
+          </li>
           <li><Link to='/' onClick={handleSignOut}>Sign Out</Link></li>
         </>
       ) : (
         <>
+         <li>
+            <button className='theme-toggle' onClick={toggleTheme}>
+              {theme === 'dark' ? '☀️' : '🌙'}
+            </button>
+         </li>
           {/* Another new link */}
           <li><Link to='/sign-in'>Sign In</Link></li>
           <li><Link to='/sign-up'>Sign Up</Link></li>
