@@ -75,7 +75,8 @@ useEffect(() => {
 
     if (remaining <= 0) {
         // Play chime
-        const chime = new Audio('/chime-chords.mp3');
+        const chime = new Audio(`${import.meta.env.VITE_BACK_END_SERVER_URL}/audio/chime_chords.mp3`);
+        chime.crossOrigin = "anonymous";
         chime.volume = 0.5;
         chime.play();
 
@@ -390,15 +391,16 @@ return (
                 </div>
 
                 <div className="progress-container">
-                    <span>{formatTime(currentTime)}</span>
+                    <span>{formatTime(timerMode ? (timerDuration - timeRemaining) : currentTime)}</span>
                     <input
                         type='range'
                         min='0'
-                        max={duration || 0}
-                        value={currentTime}
+                        max={timerMode ? timerDuration : duration || 0}
+                        value={timerMode ? (timerDuration - timeRemaining) : currentTime}
                         onChange={handleSeek}
+                        disabled={timerMode}
                       />
-                      <span>{formatTime(duration)}</span>  
+                      <span>{formatTime(timerMode ? timerDuration : duration)}</span>  
                 </div>
 
                 {/* Volume */}
