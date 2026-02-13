@@ -182,7 +182,7 @@ const ProfilePage = ()=> {
                         <h2>{user.username}</h2>
                         <p>{user.email}</p>
 
-                        <button onClick={() => setIsEditing(true)}>✏️ Edit Profile</button>
+                        <button onClick={() => setIsEditing(true)} style={{ display: 'block', margin: '0 auto'}}>✏️ Edit Profile</button>
                     </div>
                 )}
             </section>
