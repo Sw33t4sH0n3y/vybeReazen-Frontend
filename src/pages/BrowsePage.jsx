@@ -90,8 +90,31 @@ const handlePlay = async (soundscape) => {
     }
     audio.play();
     setIsPlaying(true);
-};
 
+
+// Add Media Session (lock screen controls)
+if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+        title: soundscapes.name,
+        artist: `${soundscapes.frequency_hz}Hz • vybeReazen`,
+        album: soundscapes.category,
+    });
+
+    navigator.mediaSession.setActionHandler('play', () => {
+        audio.play();
+        setIsPlaying(true);
+    });
+
+    navigator.mediaSession.setActionHandler('pause', () => {
+        audio.play();
+        setIsPlaying(true);
+    });
+
+    navigator.mediaSession.setActionHandler('stop', () => {
+        handleStop()
+    });    
+ }  
+};
 // stop playback
 const handleStop = async () => {
     const audio = audioRef.current;
