@@ -27,7 +27,7 @@ const Landing = () => {
 
       <p className='description'>
         <strong>Where ancient rhythms fuse with sacred frquencies</strong>
-        Reggae,afro-world, indigenous drums, Latin-flow and mystical soundscapes unite to create immersive journeys
+         Reggae, afro-world, indigenous drums, Latin-flow and mystical soundscapes unite to create immersive journeys
         for meditation, sound baths, and embodied healing.
       </p>
       
