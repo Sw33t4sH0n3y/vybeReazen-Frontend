@@ -394,10 +394,14 @@ button.active {
   border-radius: 12px;
   padding: 1.5rem;
   backdrop-filter: blur(10px);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   transition: all 0.4s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.3),
+    0 10px 20px rgba(0, 0, 0, 0.4),
+    0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
 .soundscape-card::before,
@@ -414,12 +418,14 @@ button.active {
 }
 
 .soundscape-card:hover,
-.session-card:hover {
-  transform: translateY(-5px);
+.session-card:hover,
+.profile-card {
+  transform: translateY(-10px);
   border-color: var(--electric-cyan);
   box-shadow: 
-    0 20px 60px rgba(0, 255, 255, 0.2),
-    0 0 40px rgba(157, 0, 255, 0.1);
+    0 15px 30px rgba(0, 0, 0, 0.4),
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px var(--glow-cyan);
 }
 
 .soundscape-card:hover::before,
@@ -427,17 +433,42 @@ button.active {
   opacity: 1;
 }
 
+.soundscape-card:hover::after,
+.session-card:hover::after {
+  opacity: 0.5;
+}
+
+.session-card::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 10%;
+  width: 80%;
+  height: 15px;
+  background: radial-gradient(ellipse, var(--glow-gold) 0%, transparent 70%);
+  filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.soundscape-card:hover::after,
 .soundscape-card.playing {
   border-color: var(--gold-pure);
   box-shadow: 
-    0 0 40px var(--glow-gold),
-    0 0 80px var(--glow-orange);
+    0 15px 30px rgba(0, 0, 0, 0.4),
+    0 30px 60px rgba(0, 0, 0, 0.5)
+    0 0 50px var(--glow-gold);
 }
 
 .soundscape-card.playing::before {
   background: var(--gradient-gold);
   opacity: 1;
   animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.soundscape-card.playing::after {
+  opacity: 0.7;
 }
 
 @keyframes glow-pulse {
