@@ -862,6 +862,21 @@ font-family: 'Rajdhani', sans-serif;
   text-align: center;
 }
 
+.profile-card h2 {
+  margin-top: 1rem;
+}
+
+.profile card form {
+  text-align: left;
+}
+
+.profile-card form div:last-child {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
 .profile-avatar {
   font-size: 5rem;
   margin-bottom: 1.5rem;

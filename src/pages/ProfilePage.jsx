@@ -6,6 +6,7 @@ import { uploadProfileImage, deleteProfileImage } from '../services/profileServi
 const ProfilePage = ()=> {
     const { user, setUser } = useContext(UserContext);
     const [isEditing, setIsEditing] = useState(false);
+    const [uploading, setUploading] = useState(false);
     const [formData, setFormData] = useState({
         username: user?.username || '',
         email: user?.email || ''
