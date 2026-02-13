@@ -1214,3 +1214,25 @@ font-family: 'Rajdhani', sans-serif;
   box-shadow: 0 0 30px var(--glow-gold);
   transform: translateY(-2px);
 }
+
+/* Theme Toggle */
+.theme-toggle {
+  background: transparent;
+  border: 2px solid var(--border-glow);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3 ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--gold-pure);
+  box-shadow: 0 0 20px var(--glow-gold);
+  transform: none;
+}
