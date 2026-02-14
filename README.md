@@ -1,4 +1,5 @@
-# vybeReazen 🎵✨ Engineering peace with ancient rhythm and modern mysticism.
+# vybeReazen 🎵✨ 
+## Engineering peace with ancient rhythm and modern mysticism.
 
 [vybeReazen](https://vybereazen.netlify.app/)
 
