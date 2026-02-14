@@ -101,6 +101,7 @@ useEffect(() => {
 const handlePlay = async (soundscape) => {
     const audio = audioRef.current;
     // if same track, toggle play/pause
+
     if (currentTrack?.id === soundscape.id) {
         if (isPlaying) {
             audio.pause();
@@ -230,7 +231,7 @@ const startVisualizer = () => {
     if (!audioContextRef.current) {
         audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
         analyserRef.current = audioContextRef.current.createAnalyser();
-        analyserRef.current.fftSize = 256;
+        analyserRef.current.fftSize = 128;
 
         sourceRef.current = audioContextRef.current.createMediaElementSource(audio);
         sourceRef.current.connect(analyserRef.current);
