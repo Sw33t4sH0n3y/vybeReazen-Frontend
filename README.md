@@ -1,5 +1,7 @@
 # vybeReazen 🎵✨ Engineering peace with ancient rhythm and modern mysticism.
 
+[vybeReazen](https://vybereazen.netlify.app/)
+
 vybeReazen is a modern sound healing responsive web application that blends sacred frequencies, ancestral rhythms and immersive sound design with contemporary full stack technology to create personalized wellness experiences.
 
 Through carefully curated soundscapes inspired by gloabal traditions, from upbeat rhythms, deep bass rhythms to ceremonial tones, vybeReazen helps users relax, meditate, regulate stress, and restore balance in minutes.
@@ -81,5 +83,12 @@ npm run dev
 
 ---
 
-**SOund therapy is a complement to, not a replacement for, professional medical care.**
+This project was created for GA + Adobe's Software Engineering Bootcamp
+
+## 🔗 Backend
+
+[vybeReazen Backend](https://github.com/Sw33t4sH0n3y/vybeReazen-backend.git)
+---
+
+**Sound therapy is a complement to, not a replacement for, professional medical care.**
 *Built with 💜, mindful intention, to support balance, to elevate healing through sound and modern wellness.*
