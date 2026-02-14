@@ -3,6 +3,14 @@
 
 [vybeReazen](https://vybereazen.netlify.app/)
 
+<img width="1368" height="1229" alt="Screenshot 2026-02-13 at 9 13 27 PM" src="https://github.com/user-attachments/assets/6ac4912c-616a-40fb-86d4-ebca74fba6f8" />
+
+<img width="1367" height="1224" alt="Screenshot 2026-02-13 at 9 14 45 PM" src="https://github.com/user-attachments/assets/f63fafb5-9eb8-4ed8-9d9e-974c438bcb3a" />
+
+<img width="1369" height="1231" alt="Screenshot 2026-02-13 at 9 16 06 PM" src="https://github.com/user-attachments/assets/ae8e4280-0a5a-4437-a1b5-04edaab90a89" />
+
+
+
 vybeReazen is a modern sound healing responsive web application that blends sacred frequencies, ancestral rhythms and immersive sound design with contemporary full stack technology to create personalized wellness experiences.
 
 Through carefully curated soundscapes inspired by gloabal traditions, from upbeat rhythms, deep bass rhythms to ceremonial tones, vybeReazen helps users relax, meditate, regulate stress, and restore balance in minutes.
