@@ -45,7 +45,6 @@ if you experience any discomfort, dizziness, or adverse effects while using this
 
 - **Curated Soundscapes** - Browse healing frequencies across meditation, sound bath, massage and all categories
 - **Solfeggio Frequencies** - Experience 174Hz, 432Hz, 528Hz, 639Hz, and 741Hz frequencies
-- **AI-Powere Frequency Info** - Learn more about each frequency with Google Gemini AI generated insigths on history, science, and usage
 - **Audio Visualizer** - Real-time waveform visualization synced to playback
 - **Session Timer** - Set countdown timers (10, 20, 30, 60 min) with gentle chime alerts
 - **Favorites** -Love your favorites for quick access
@@ -97,6 +96,19 @@ This project was created for GA + Adobe's Software Engineering Bootcamp
 ## 🔗 Backend
 
 [vybeReazen Backend](https://github.com/Sw33t4sH0n3y/vybeReazen-backend.git)
+---
+
+## Next Steps
+- **AI Frequency Insights** - Gemini intergration
+- **Intensity Filter** - 1-5 scale filter
+- **Playlist Creation** - Custom Playlists
+- **Artist Licensing** - partner with artists to feature licensed music
+- **SLeep Timer with Fade** - gradual volume decrease
+- **Social Sharing** - sharing with friends
+- **User Ratings & Reviews** - rate soundscapes
+- **Offline Mode** - No internet required
+- **Mobile App** - React Native
+
 ---
 
 **Sound therapy is a complement to, not a replacement for, professional medical care.**
