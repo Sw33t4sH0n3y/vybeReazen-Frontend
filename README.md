@@ -3,6 +3,7 @@
 
 [vybeReazen](https://vybereazen.netlify.app/)
 
+
 vybeReazen is a modern sound healing responsive web application that blends sacred frequencies, ancestral rhythms and immersive sound design with contemporary full stack technology to create personalized wellness experiences.
 
 Through carefully curated soundscapes inspired by gloabal traditions, from upbeat rhythms, deep bass rhythms to ceremonial tones, vybeReazen helps users relax, meditate, regulate stress, and restore balance in minutes.
