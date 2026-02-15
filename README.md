@@ -30,12 +30,12 @@ This applicatiom is intended for relaxation and wellness purposes only ans is **
 ---
 
 **Exercise caution if you**
--Have hearing impairments or sensitivities
--Experience tinnitus or othe auditory conditions
--Have epilepsy or are prone to seizures
--Have mental health disorders or are undergoing psychiatric treatment
--Are pregnant
--Have a pacemaker or other medical devices
+- Have hearing impairments or sensitivities
+- Experience tinnitus or othe auditory conditions
+- Have epilepsy or are prone to seizures
+- Have mental health disorders or are undergoing psychiatric treatment
+- Are pregnant
+- Have a pacemaker or other medical devices
 
 if you experience any discomfort, dizziness, or adverse effects while using this application, discontinue use immediately and consult a healthcare professional.
 
