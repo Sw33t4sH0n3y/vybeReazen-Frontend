@@ -68,9 +68,8 @@ If you experience any discomfort, dizziness, or adverse effects while using this
 ### Backend
 - Python Flask
 - PostgreSQL
-- JWT Aiuthentication
+- JWT Authentication
 - Cloudinary
-- Google Gemini API (AI-generated frequency information)
 - FLask CORS
 
 ## 🚀 Quick Start
