@@ -37,7 +37,7 @@ This applicatiom is intended for relaxation and wellness purposes only ans is **
 - Are pregnant
 - Have a pacemaker or other medical devices
 
-if you experience any discomfort, dizziness, or adverse effects while using this application, discontinue use immediately and consult a healthcare professional.
+If you experience any discomfort, dizziness, or adverse effects while using this application, discontinue use immediately and consult a healthcare professional.
 
 ---
 
@@ -112,4 +112,4 @@ This project was created for GA + Adobe's Software Engineering Bootcamp
 ---
 
 **Sound therapy is a complement to, not a replacement for, professional medical care.**
-*Built with 💜, mindful intention, to support balance, to elevate healing through sound and modern wellness.*
+*Built with 💜, mindful intention to support balance, to elevate healing through sound and modern wellness.*
