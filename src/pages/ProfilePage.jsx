@@ -79,8 +79,8 @@ const ProfilePage = ()=> {
         setError('');
 
         try {
-            const upatedUser = await uploadProfileImage(file);
-            setUser({ ...user, image_url: updaterUser.image_url });
+            const updatedUser = await uploadProfileImage(file);
+            setUser({ ...user, image_url: updatedUser.image_url });
             setMessage('Profile image uploaded!');
         } catch (err) {
             setError('Failed to upload image');
