@@ -102,7 +102,7 @@ This project was created for GA + Adobe's Software Engineering Bootcamp
 
 A multi phase vision for adaptive, immersive, and inclusive sound wellness.
 
-**Phase 3 - Intelligent Personalization & Inclusive UX**
+**Phase 2 - Intelligent Personalization & Inclusive UX**
 Health-tech meets adaptive, accessible experience design
 
 - AI Frequency insights & mood responsive sound
@@ -113,7 +113,7 @@ Health-tech meets adaptive, accessible experience design
 - **Accessibility-first UX:** screen readers, adaptive layouts, cognitive friendly modes, haptic feedback
 - Daily affirmations matched to user mood
 
-**Phase 4 - Mobile expansion & Immersive Delivery**
+**Phase 3 - Mobile expansion & Immersive Delivery**
 Cross-platform growth with deep engagement
 
 - React  Native mobile app(iOS + Android)
@@ -122,7 +122,7 @@ Cross-platform growth with deep engagement
 - Spatial/ 3D audio experiences
 - Smartwatch companiion apps with haptics & biometric controls
 
-**Phase 5 - Professional & SaaS Ecosystem**
+**Phase 4 - Professional & SaaS Ecosystem**
 Moniterization, analytics, and enterprise readiness
 
 - Practicioner accounts with scheduling & white-label branding
@@ -131,7 +131,7 @@ Moniterization, analytics, and enterprise readiness
 - Enterprise licensing (studios and spas)
 - Public API for integrations
 
-**Phase 6 - Community, Creators & Global Scale**
+**Phase 5 - Community, Creators & Global Scale**
 Product growth through connection and engagement
 
 - Artist onboarding & licensed music partnerships
@@ -139,7 +139,7 @@ Product growth through connection and engagement
 - Community ratings & wellnes stats
 - Multi-language support & localization
 
-**Phase 7 - Advanced AI & Adaptive Sound experiences**
+**Phase 6 - Advanced AI & Adaptive Sound experiences**
 Next level wellness & health tech innovation
 
 - Real time frequency mixing engine
