@@ -17,7 +17,7 @@ Through carefully curated soundscapes inspired by gloabal traditions, from upbea
 
 Built with user-centered UX, scalable architecture and intentional product dessign, vybeReazen transforms sound therapy into accessible, modern wellness platform. 
 
-This is a demo version offering a glimpse into upcoming features, personalization tools and expanded sound journeys.
+**This is a demo version offering a glimpse into upcoming features, personalization tools and expanded sound journeys.**
 
 Not just music. A ritual of restoration, powered by code.
 
@@ -49,7 +49,7 @@ If you experience any discomfort, dizziness, or adverse effects while using this
 - **Session Timer** - Set countdown timers (10, 20, 30, 60 min) with gentle chime alerts
 - **Favorites** -Love your favorites for quick access
 - **User Profiles** - Create an account with profile photo upload with Cloudinary
-- **Session History** -Track you listening sessions
+- **Session History** -Track your listening sessions
 - **light/Dark Mode** - Toggle between themes for comfortable viewing
 - **Background Playback** - Audio continues when switching tabs or minimizing
 - **Lock Screen Controls** - Control playback fro your device's lock screen
