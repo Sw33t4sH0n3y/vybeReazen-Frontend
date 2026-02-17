@@ -45,9 +45,33 @@ html[data-theme="light"] {
   --midnight: #d1d1d6;
 
   --text-bright: #1a1a1a;
-  --text-dim: rgba(0, 0, 0, 0.6);
+  --text-dim: rgba(0, 0, 0, 0.7); 
+
+  --electric-pink: #a3006b;
+  --hot-magenta: #9e1b6b;
+  --neon-coral: #c42b4b;
+  --cyber-orange: #b84d00;
+
+  --gold-pure: #8a6d00;
+  --gold-electric: #7a5f00;
+  --bronze-hot: #a35a00;
+
+  --electric-cyan: #006b6b;
+  --neon-teal: #007a60;
+
+  --vivid-purple: #6b00a3;
+
+  --glow-pink: rgba(163, 0, 107, 0.3);
+  --glow-gold: rgba(138, 109, 0, 0.3);
+  --glow-cyan: rgba(0, 107, 107, 0.3);
+  --glow-orange: rgba(184, 77, 0, 0.3);
 
   --border-glow: rgba(0, 0, 0, 0.15);
+
+  --gradient-fire: linear-gradient(135deg, #a3006b 0%, #b84d00 50%, #8a6d00 100%)
+  --gradient-sunset: linear-gradient(135deg, #9e1b6b 0%, #b84d00 100%)
+  --gradient-gold: linear-gradient(135deg, #8a6d00 0%, #a35a00 100%)
+  --gradient-ice: linear-gradient(135deg, #006b6b 0%, #0077a3 50%, #6b00a3 100%)
 }
 
 html[data-theme="light"] body {
@@ -61,27 +85,44 @@ html[data-theme="light"] #root{
 
 html[data-theme="light"] body::before {
   background: 
-  radial-gradient(ellipse at 20% 80%, rgba(255, 0, 255, 0.8) 0%, transparent 50%),
-  radial-gradient(ellipse at 80% 20%, rgba(0, 200, 200, 0.8) 0%, transparent 50%),
-  radial-gradient(ellipse at 50% 50%, rgba(255, 150, 0, 0.05) 0%, transparent 60%);
+  radial-gradient(ellipse at 20% 80%, rgba(163, 0, 107, 008) 0%, transparent 50%),
+  radial-gradient(ellipse at 80% 20%, rgba(0, 107, 107, 0.08) 0%, transparent 50%),
+  radial-gradient(ellipse at 50% 50%, rgba(184, 77, 0, 0.05) 0%, transparent 60%);
 }
 
 html[data-theme="light"] nav {
   background: rgba(255, 255, 255, 0.95);
+  border-image: var(--gradient-fire) 1;
 }
 
 html[data-theme="light"] .soundscape-card,
 html[data-theme="light"] .session-card,
 html[data-theme="light"] .profile-card{
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 
-    0 4px 6px rgba(0, 0, 0, 0.1),
-    0 10px 20px rgba(0, 0, 0, 0.1),
-    0 25px 50px rgba(0, 0, 0, 0.15);
+    0 4px 6px rgba(0, 0, 0, 0.7),
+    0 10px 20px rgba(0, 0, 0, 0.5),
 }
 
+html[data-theme=light] .soundscape-card:hover,
+html[data-theme=light] .session-card:hover {
+  border-color: var(--electric-cyan);
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.1),
+    0 0 20px var(--glow-cyan)
+}
+
+
 html[data-theme="light"] .audio-player {
-   background: rgba(255, 255, 255, 0.95);
+   background: rgba(255, 255, 255, 0.98);
+   border-top: 3px solid;
+   border-image: var(--gradient-gold);
+}
+
+html[data-theme="light"] .modal {
+  background: #ffffff;
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 html[data-theme="light"] input[type='text'],
@@ -89,6 +130,93 @@ html[data-theme="light"] input[type='email'],
 html[data-theme="light"] input[type='password'] {
   background: rgba(0, 0, 0, 0.05);
   color:#1a1a1a;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme="light"] input[type='text']:focus,
+html[data-theme="light"] input[type='email']:focus,
+html[data-theme="light"] input[type='password']:focus {
+  border-color: var(--gradient-gold);
+  box-shadow: 0 0 15px var(--glow-cyan);
+}
+
+html[data-theme="light"] button {
+  color: #ffffff;
+}
+
+html[data-theme="light"] button.gold,
+html[data-theme="light"] button.primary-btn {
+  background: var(--gradient-gold);
+  color: #ffffff;
+}
+
+html[data-theme="light"] .frequency-badge {
+  background: var(--gradient-gold);
+  color: #ffffff;
+}
+
+html[data-theme="light"] .category-filter button {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-dim);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme="light"] .category-filter button:hover {
+  border-color: var(--electric-cyan);
+  color: var(--electric-cyan);
+}
+
+html[data-theme="light"] .category-filter button:active {
+  background: var(--gradient-gold);
+  color: #ffffff;
+}
+
+html[data-theme="light"] .timer-presents button {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-dim);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme="light"] .timer-display {
+  background: rgba(138, 109, 0, 0.1);
+  border: 1px solid var(--gold-pure);
+}
+
+html[data-theme="light"] .timer-remaining {
+  color: var(--gold-pure);
+}
+
+html[data-theme="light"] h1 {
+  background: var(--gradient-fire);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html[data-theme="light"] a {
+  color: var(--electric-cyan);
+}
+
+html[data-theme="light"] a:hover {
+  color: var(--electric-pink);
+}
+
+html[data-theme="light"] .tagline {
+  color: var(--electric-cyan);
+}
+
+html[data-theme="light"] .feature h3 {
+  color: var(--gold-pure);
+}
+
+html[data-theme="light"] .controls button {
+  background: rgba(0, 0, 0, 0.1);
+  color: var(--text-bright);
+}
+
+html[data-theme="light"] .controls button.play-btn {
+  background: var(--gradient-gold);
+  color: #ffffff;
 }
 
 /* Reset */
